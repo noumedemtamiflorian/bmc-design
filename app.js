@@ -1,6 +1,7 @@
 const express = require("express");
 const db = require("./src/config/db");
 const contact = require("./src/routes/contact");
+const devis = require("./src/routes/devis");
 
 const app = express();
 app.use(express.json());
@@ -24,6 +25,9 @@ app.use((req, res, next) => {
 
 // Utilisation des routes pour les contacts
 app.use("/api/contact", contact);
+
+// Utilisation des routes pour les devis
+app.use("/api/devis", devis);
 
 // Démarrage du serveur
 const port = process.env.PORT || 5000;
