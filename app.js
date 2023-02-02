@@ -2,6 +2,8 @@ const express = require("express");
 const db = require("./src/config/db");
 const contact = require("./src/routes/contact");
 const devis = require("./src/routes/devis");
+const swaggerUi = require("swagger-ui-express");
+const swaggerDocument = require("./swagger.json");
 
 const app = express();
 app.use(express.json());
@@ -28,6 +30,9 @@ app.use("/api/contact", contact);
 
 // Utilisation des routes pour les devis
 app.use("/api/devis", devis);
+
+// Utilisation des routes pour la documentation de l'API avec swagger enn mode developement
+app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 // Démarrage du serveur
 const port = process.env.PORT || 5000;

@@ -1,0 +1,299 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "API pour les devis et contacts",
+        "description": "Cette API permet de gérer les devis et les contacts.",
+        "version": "1.0.0"
+    },
+    "host": "http://localhost:5000",
+    "basePath": "/",
+    "schemes": [
+        "http"
+    ],
+    "paths": {
+        "/api/contact": {
+            "post": {
+                "description": "Créer un nouveau contact",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "name": {
+                                        "type": "string",
+                                        "required": true
+                                    },
+                                    "email": {
+                                        "type": "string",
+                                        "format": "email",
+                                        "required": true
+                                    },
+                                    "subject": {
+                                        "type": "string",
+                                        "required": true
+                                    },
+                                    "message": {
+                                        "type": "string",
+                                        "required": true
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Contact créé",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "name": {
+                                            "type": "string",
+                                            "required": true
+                                        },
+                                        "email": {
+                                            "type": "string",
+                                            "format": "email",
+                                            "required": true
+                                        },
+                                        "subject": {
+                                            "type": "string",
+                                            "required": true
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "required": true
+                                        },
+                                        "date": {
+                                            "type": "string",
+                                            "format": "date-time",
+                                            "required": true
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Erreur dans la demande"
+                    }
+                }
+            },
+            "get": {
+                "description": "Obtenir tous les contacts",
+                "responses": {
+                    "200": {
+                        "description": "Contacts trouvés",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "object",
+                                        "properties": {
+                                            "name": {
+                                                "type": "string",
+                                                "required": true
+                                            },
+                                            "email": {
+                                                "type": "string",
+                                                "format": "email",
+                                                "required": true
+                                            },
+                                            "subject": {
+                                                "type": "string",
+                                                "required": true
+                                            },
+                                            "message": {
+                                                "type": "string",
+                                                "required": true
+                                            },
+                                            "date": {
+                                                "type": "string",
+                                                "format": "date-time",
+                                                "required": true
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Erreur dans la demande"
+                    }
+                }
+            }
+        },
+        "/api/devis": {
+            "post": {
+                "description": "Crée un nouveau devis",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "required": [
+                                    "name",
+                                    "email",
+                                    "need",
+                                    "job",
+                                    "startDate",
+                                    "budget",
+                                    "currency",
+                                    "message"
+                                ],
+                                "properties": {
+                                    "name": {
+                                        "type": "string",
+                                        "description": "Nom du demandeur"
+                                    },
+                                    "email": {
+                                        "type": "string",
+                                        "format": "email",
+                                        "description": "Adresse email du demandeur"
+                                    },
+                                    "need": {
+                                        "type": "string",
+                                        "description": "Besoin spécifique"
+                                    },
+                                    "job": {
+                                        "type": "string",
+                                        "description": "Type de travail demandé"
+                                    },
+                                    "startDate": {
+                                        "type": "string",
+                                        "format": "date-time",
+                                        "description": "Date de début souhaité"
+                                    },
+                                    "budget": {
+                                        "type": "number",
+                                        "description": "Budget souhaité"
+                                    },
+                                    "currency": {
+                                        "type": "string",
+                                        "description": "Devise du budget"
+                                    },
+                                    "message": {
+                                        "type": "string",
+                                        "description": "Message supplémentaire"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Devis créé avec succès",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "name": {
+                                            "type": "string",
+                                            "description": "Nom du demander"
+                                        },
+                                        "email": {
+                                            "type": "string",
+                                            "description": "Email de la personne qui veut contacter"
+                                        },
+                                        "need": {
+                                            "type": "string",
+                                            "description": "Besoin"
+                                        },
+                                        "job": {
+                                            "type": "string"
+                                        },
+                                        "startDate": {
+                                            "type": "string"
+                                        },
+                                        "budget": {
+                                            "type": "number"
+                                        },
+                                        "currency": {
+                                            "type": "string"
+                                        },
+                                        "message": {
+                                            "type": "string"
+                                        },
+                                        "date": {
+                                            "type": "string",
+                                            "format": "date-time"
+                                        },
+                                        "id": {
+                                            "type": "string"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Erreur de validation"
+                    }
+                }
+            },
+            "get": {
+                "description": "Récupère tous les devis",
+                "responses": {
+                    "200": {
+                        "description": "Récupération réussie",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "object",
+                                        "properties": {
+                                            "name": {
+                                                "type": "string"
+                                            },
+                                            "email": {
+                                                "type": "string"
+                                            },
+                                            "need": {
+                                                "type": "string"
+                                            },
+                                            "job": {
+                                                "type": "string"
+                                            },
+                                            "startDate": {
+                                                "type": "string"
+                                            },
+                                            "budget": {
+                                                "type": "number"
+                                            },
+                                            "currency": {
+                                                "type": "string"
+                                            },
+                                            "message": {
+                                                "type": "string"
+                                            },
+                                            "date": {
+                                                "type": "string",
+                                                "format": "date-time"
+                                            },
+                                            "id": {
+                                                "type": "string"
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Erreur lors de la récupération"
+                    }
+                }
+            }
+        }
+    }
+}
