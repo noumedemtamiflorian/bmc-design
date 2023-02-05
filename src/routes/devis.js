@@ -8,10 +8,9 @@ router.post("/", (req, res) => {
         name: req.body.name,
         email: req.body.email,
         need: req.body.need,
-        job: req.body.job,
+        work_for_need: req.body.work_for_need,
         startDate: req.body.startDate,
-        budget: req.body.budget,
-        currency: req.body.currency,
+        amount: req.body.amount,
         message: req.body.message,
     });
 
